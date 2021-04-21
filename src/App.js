@@ -84,7 +84,7 @@ function populateMapData(map, mapId, mapData) {
         'circle-opacity': 0.85,
         // color circles by primary category
         'circle-color': ['match', ['get', 'tax1']].concat(circleColors),
-        'circle-stroke-color': '#fff',
+        'circle-stroke-color': '#000',
         'circle-stroke-width': 0.4,
       }
     });
