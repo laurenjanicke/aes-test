@@ -33,7 +33,7 @@ function getPopupContent(props) {
   return `
     <div class="popup" style = "color: 626262">
       <h3 class="company-name">
-        <a href=${props['website']} style="color: 02346d" target="blank">${props['company']}</a>
+        <a href=${props['website']} class="popup-link" target="blank">${props['company']}</a>
       </h3>
       Focus: <span class="category-info">${categoryInfo}</span><br />
       City: <span class="city-info">${props['city']}</span><br />
@@ -57,6 +57,7 @@ function displayPopup(map, feature) {
     .setMaxWidth("600px")
     .addTo(map);
 }
+//79ddf2
 
 function populateMapData(map, mapId, mapData) {
   map.setCenter(MAPS[mapId].center);
