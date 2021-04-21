@@ -31,12 +31,12 @@ function getPopupContent(props) {
     extraNotes = `<span>${props['notes']}</span><br />`;
   }
   return `
-    <div class="popup">
+    <div class="popup" style = "color: 626262">
       <h3 class="company-name">
-        <a href=${props['website']} target="blank">${props['company']}</a>
+        <a href=${props['website']} style="color: 02346d" target="blank">${props['company']}</a>
       </h3>
-      <span class="category-info">${categoryInfo}</span><br />
-      <span class="city-info">${props['city']}</span><br />
+      Focus: <span class="category-info">${categoryInfo}</span><br />
+      City: <span class="city-info">${props['city']}</span><br />
       ${extraNotes}
     </div>`;
 }
@@ -54,7 +54,7 @@ function displayPopup(map, feature) {
   new mapboxgl.Popup({})
     .setLngLat(coordinates)
     .setHTML(getPopupContent(feature.properties))
-    .setMaxWidth("300px")
+    .setMaxWidth("600px")
     .addTo(map);
 }
 
