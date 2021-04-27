@@ -43,7 +43,7 @@ export default function LogoOverlay(props) {
         MS '20, Stanford.
       </div>
       <div className={classes.aesLogoContainer}>
-        <a href=“https://www.energysociety.org” target=“_blank” rel=“noopener noreferrer”> 
+        <a href="https://www.energysociety.org" target="_blank" rel="noopener noreferrer"> 
           <img
             src={aesLogoWhite}
             className={classes.aesLogo}
