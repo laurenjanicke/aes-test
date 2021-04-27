@@ -310,6 +310,7 @@ export default function App() {
           onToggleCategory={handleToggleCategory} />
         <main className={classes.mainContent}>
           <div id="map-container" className={classes.mapContainer} />
+            <LogoOverlay selectedMapId={selectedMapId} />
           <div className={classes.mapOverlay}>
             <div className={classes.mapOverlayInner}>
               <div className={classes.mainControlOverlay}>
