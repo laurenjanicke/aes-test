@@ -25,17 +25,17 @@ mapboxgl.accessToken='pk.eyJ1IjoidG90b3JvLWRha2UiLCJhIjoiY2tiNzJuZmQ3MDFudDJxa2N
 function getPopupContent(props) {
   const categoryInfo = ['tax1', 'tax2', 'tax3']
     .map(k => props[k])
-    .filter(s => s).join(" | ");
+    .filter(s => s).join(", ");
   var extraNotes = "";
   if (props.hasOwnProperty("notes") && props["notes"] !== "") {
-    extraNotes = `<span>${props['notes']}</span><br />`;
+    extraNotes = `Focus: <span>${props['notes']}</span><br />`;
   }
   return `
     <div class="popup" style = "color: 626262">
       <h3 class="company-name">
         <a href=${props['website']} class="popup-link" target="blank">${props['company']}</a>
       </h3>
-      Focus: <span class="category-info">${categoryInfo}</span><br />
+      Sector(s): <span class="category-info">${categoryInfo}</span><br />
       City: <span class="city-info">${props['city']}</span><br />
       ${extraNotes}
     </div>`;
