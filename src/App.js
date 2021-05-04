@@ -28,7 +28,7 @@ function getPopupContent(props) {
     .filter(s => s).join(", ");
   var extraNotes = "";
   if (props.hasOwnProperty("notes") && props["notes"] !== "") {
-    extraNotes = `Focus: <span>${props['notes']}</span><br />`;
+    extraNotes = `Focuse: <span>${props['notes']}</span><br />`;
   }
   return `
     <div class="popup" style = "color: 626262">
