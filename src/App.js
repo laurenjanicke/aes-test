@@ -175,6 +175,17 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
   },
+  mainControlOverlayShifted: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    padding: 0,
+    margin: 0,
+    pointerEvents: 'auto',
+    display: 'flex',
+    flexDirection: 'row',
+    marginLeft: 320,
+  },
   insightLogoContainer: {
     padding: 8,
   },
@@ -295,6 +306,7 @@ export default function App() {
     }
   });
 
+if (!mobileDrawerOpen) {
   return (
     <ThemeProvider theme={THEME}>
       <div className={classes.root}>
@@ -336,4 +348,47 @@ export default function App() {
       </div>
     </ThemeProvider>
   );
+} else {
+  return (
+    <ThemeProvider theme={THEME}>
+      <div className={classes.root}>
+        <SettingsPane
+          selectedMapId={selectedMapId}
+          mobileDrawerOpen={mobileDrawerOpen}
+          selectedCategories={selectedCategories}
+          onToggleOpen={setMobileDrawerOpen}
+          onSelectMap={handleSelectMap}
+          taxonomy={taxonomy}
+          onSelectAllCategories={() => handleSelectAllCategories(taxonomy)}
+          onDeselectAllCategories={handleDeselectAllCategories}
+          onToggleCategory={handleToggleCategory} />
+        <main className={classes.mainContent}>
+          <div id="map-container" className={classes.mapContainer} />
+            <LogoOverlay selectedMapId={selectedMapId} />
+          <div className={classes.mapOverlay}>
+            <div className={classes.mapOverlayInner}>
+              <div className={classes.mainControlOverlayShifted}>
+                <Hidden smDown implementation="css">
+                  <div className={classes.insightLogoContainer}>
+                    <img src={insightLogo} alt="aes insight logo" height="80" />
+                  </div>
+                </Hidden>
+                <div className={classes.titleAndSearch}>
+                  <div className={classes.mapTitle}>
+                    <Typography variant="h1">{MAPS[selectedMapId].title}</Typography>
+                  </div>
+                  <Omnibox
+                    companies={companiesGeojson.features}
+                    onSelectCompany={handleSelectCompany}
+                    onOpenMobileDrawer={() => setMobileDrawerOpen(true)} />
+                  </div>
+              </div>
+              <LogoOverlay selectedMapId={selectedMapId} />
+            </div>
+          </div>
+        </main>
+      </div>
+    </ThemeProvider>
+  );
+}
 }

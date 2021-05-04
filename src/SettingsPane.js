@@ -154,7 +154,8 @@ export default function SettingsPane(props) {
     <div className={classes.drawer}>
       <Hidden lgUp implementation="css">
         <Drawer
-          variant="temporary"
+          variant="persistent"
+          anchor = "left"
           open={props.mobileDrawerOpen}
           onClose={closeSettingsPane}
           ModalProps={{
