@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import LogoOverlay from './LogoOverlay';
 import Omnibox from './Omnibox';
 import SettingsPane from './SettingsPane';
@@ -188,6 +189,8 @@ const useStyles = makeStyles((theme) => ({
   },
   insightLogoContainer: {
     padding: 8,
+    marginTop: 23,
+    marginLeft: 8,
   },
   titleAndSearch: {
     padding: '4px 8px',
@@ -218,6 +221,13 @@ export default function App() {
       s.add(e.target.name);
     }
     setSelectedCategories(s);
+  }
+
+    function handleReset() {
+    thisMap.flyTo({
+      center: MAPS[selectedMapId].flyTo,
+      zoom: MAPS[selectedMapId].flyToZoom || 8,
+    });
   }
 
   function handleSelectAllCategories(txnomy) {
@@ -328,7 +338,7 @@ if (!mobileDrawerOpen) {
               <div className={classes.mainControlOverlay}>
                 <Hidden smDown implementation="css">
                   <div className={classes.insightLogoContainer}>
-                    <img src={insightLogo} alt="aes insight logo" height="80" />
+                    <Button variant="contained" color = "primary" onClick={() => { handleReset() }}>Reset<br/>View</Button>
                   </div>
                 </Hidden>
                 <div className={classes.titleAndSearch}>
@@ -370,7 +380,7 @@ if (!mobileDrawerOpen) {
               <div className={classes.mainControlOverlayShifted}>
                 <Hidden smDown implementation="css">
                   <div className={classes.insightLogoContainer}>
-                    <img src={insightLogo} alt="aes insight logo" height="80" />
+                    <Button variant="contained" color = "primary" onClick={() => { handleReset() }}>Reset View</Button>
                   </div>
                 </Hidden>
                 <div className={classes.titleAndSearch}>
