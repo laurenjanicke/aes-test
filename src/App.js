@@ -223,13 +223,6 @@ export default function App() {
     setSelectedCategories(s);
   }
 
-    function handleReset() {
-    thisMap.flyTo({
-      center: MAPS[selectedMapId].flyTo,
-      zoom: MAPS[selectedMapId].flyToZoom || 8,
-    });
-  }
-
   function handleSelectAllCategories(txnomy) {
     // takes argument instead of using taxonomy directly because taxonomy
     // state update can lag behind
@@ -336,11 +329,6 @@ if (!mobileDrawerOpen) {
           <div className={classes.mapOverlay}>
             <div className={classes.mapOverlayInner}>
               <div className={classes.mainControlOverlay}>
-                <Hidden smDown implementation="css">
-                  <div className={classes.insightLogoContainer}>
-                    <Button variant="contained" color = "primary" onClick={() => { handleReset() }}>Reset<br/>View</Button>
-                  </div>
-                </Hidden>
                 <div className={classes.titleAndSearch}>
                   <div className={classes.mapTitle}>
                     <Typography variant="h1">{MAPS[selectedMapId].title}</Typography>
@@ -378,11 +366,7 @@ if (!mobileDrawerOpen) {
           <div className={classes.mapOverlay}>
             <div className={classes.mapOverlayInner}>
               <div className={classes.mainControlOverlayShifted}>
-                <Hidden smDown implementation="css">
-                  <div className={classes.insightLogoContainer}>
-                    <Button variant="contained" color = "primary" onClick={() => { handleReset() }}>Reset View</Button>
-                  </div>
-                </Hidden>
+                
                 <div className={classes.titleAndSearch}>
                   <div className={classes.mapTitle}>
                     <Typography variant="h1">{MAPS[selectedMapId].title}</Typography>
