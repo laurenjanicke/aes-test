@@ -19,11 +19,11 @@ const COMPANIES_SOURCE = 'companies';
 const MAPS = CONFIG['maps'];
 const POINT_LAYER = 'energy-companies-point-layer';
 
-// = process.env.REACT_APP_MAPBOX_API_TOKEN;
-// mapboxgl.accessToken
+// mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN;
 mapboxgl.accessToken='pk.eyJ1IjoidG90b3JvLWRha2UiLCJhIjoiY2tiNzJuZmQ3MDFudDJxa2N1ZG91YzBzciJ9.5qJpYzti2W7avnuM9rCiKA'
 
 function getPopupContent(props) {
+  // returns the html code for the popup 
   const categoryInfo = ['tax1', 'tax2', 'tax3']
     .map(k => props[k])
     .filter(s => s).join(", ");
@@ -43,13 +43,14 @@ function getPopupContent(props) {
 }
 
 function clearPopups() {
-  var popUps = document.getElementsByClassName('mapboxgl-popup');
   // Check if there is already a popup on the map and if so, remove it
   // This prevents multiple popups in the case of overlapping circles
+  var popUps = document.getElementsByClassName('mapboxgl-popup');
   if (popUps[0]) popUps[0].remove();
 }
 
 function displayPopup(map, feature) {
+  // clears the open popup and creates the new one 
   const coordinates = feature.geometry.coordinates.slice();
   clearPopups();
   new mapboxgl.Popup({})
@@ -61,6 +62,8 @@ function displayPopup(map, feature) {
 //79ddf2
 
 function populateMapData(map, mapId, mapData) {
+  // adds the data to the map
+  // sets correct initial view of the map
   map.setCenter(MAPS[mapId].center);
   map.setZoom(6);
 
@@ -112,6 +115,7 @@ function populateMapData(map, mapId, mapData) {
 const getUrlFragment = () => window.location.hash.replace('#', '');
 
 function useUrlFragment(fragment, callback) {
+  // not sure what is happening here
   useEffect(() => {
     window.location.hash = '#' + fragment;
     const handleHashChange = () => {
@@ -125,6 +129,7 @@ function useUrlFragment(fragment, callback) {
 }
 
 function getInitialMapId() {
+  // returns the mapId
   let initialMapId = getUrlFragment();
   if (MAPS.hasOwnProperty(initialMapId)) {
     return initialMapId;
@@ -132,6 +137,7 @@ function getInitialMapId() {
   return CONFIG['defaultMapId'];
 }
 
+// sets the styles for the material-ui components
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -203,6 +209,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function App() {
+  // returns the html for the app 
   const classes = useStyles();
 
   const [thisMap, setThisMap] = useState(null);
@@ -214,6 +221,7 @@ export default function App() {
 
 
   function handleToggleCategory(e) {
+    // called when categories are individually changed
     var s = new Set(selectedCategories);
     if (s.has(e.target.name)) {
       s.delete(e.target.name);
@@ -234,6 +242,7 @@ export default function App() {
   }
 
   function handleSelectCompany(e) {
+    // called when you select from the search bar
     const selectedCompany = companiesGeojson.features[e.idx];
     displayPopup(thisMap, selectedCompany);
     thisMap.flyTo({
@@ -243,6 +252,7 @@ export default function App() {
   }
 
   function handleSelectMap(mapId) {
+    // called when you change the mapId
     if (mapId !== selectedMapId) {
       clearPopups();
       thisMap.removeLayer(POINT_LAYER);
@@ -256,7 +266,17 @@ export default function App() {
     }
   }
 
+  function handleShift() {
+    // called when you open the mobile drawer
+    if (!mobileDrawerOpen) {
+      return classes.mainControlOverlay;
+    } else {
+      return classes.mainControlOverlayShifted;
+    }
+  }
+
   function setUpMap(data) {
+    // changes the data in the map
     setTaxonomy(data['taxonomy']);
     setCompaniesGeojson(data['geojson']);
     // initially select all categories
@@ -264,6 +284,7 @@ export default function App() {
   }
 
   function initMap() {
+    // creates the map
     let map = new mapboxgl.Map({
       container: "map-container",
       style: 'mapbox://styles/mapbox/dark-v10',
@@ -284,6 +305,7 @@ export default function App() {
   }
 
   useEffect(() => {
+    // not sure what this does
     if (!thisMap) {
       initMap();
     }
@@ -304,85 +326,45 @@ export default function App() {
   });
 
   useUrlFragment(selectedMapId, urlFragment => {
+    // not sure what this does
     if (MAPS.hasOwnProperty(urlFragment)) {
       handleSelectMap(urlFragment);
     }
   });
 
-if (!mobileDrawerOpen) {
-  return (
-    <ThemeProvider theme={THEME}>
-      <div className={classes.root}>
-        <SettingsPane
-          selectedMapId={selectedMapId}
-          mobileDrawerOpen={mobileDrawerOpen}
-          selectedCategories={selectedCategories}
-          onToggleOpen={setMobileDrawerOpen}
-          onSelectMap={handleSelectMap}
-          taxonomy={taxonomy}
-          onSelectAllCategories={() => handleSelectAllCategories(taxonomy)}
-          onDeselectAllCategories={handleDeselectAllCategories}
-          onToggleCategory={handleToggleCategory} />
-        <main className={classes.mainContent}>
-          <div id="map-container" className={classes.mapContainer} />
-            <LogoOverlay selectedMapId={selectedMapId} />
-          <div className={classes.mapOverlay}>
-            <div className={classes.mapOverlayInner}>
-              <div className={classes.mainControlOverlay}>
-                <div className={classes.titleAndSearch}>
-                  <div className={classes.mapTitle}>
-                    <Typography variant="h1">{MAPS[selectedMapId].title}</Typography>
-                  </div>
-                  <Omnibox
-                    companies={companiesGeojson.features}
-                    onSelectCompany={handleSelectCompany}
-                    onOpenMobileDrawer={() => setMobileDrawerOpen(true)} />
-                  </div>
+return (
+  <ThemeProvider theme={THEME}>
+    <div className={classes.root}>
+      <SettingsPane
+        selectedMapId={selectedMapId}
+        mobileDrawerOpen={mobileDrawerOpen}
+        selectedCategories={selectedCategories}
+        onToggleOpen={setMobileDrawerOpen}
+        onSelectMap={handleSelectMap}
+        taxonomy={taxonomy}
+        onSelectAllCategories={() => handleSelectAllCategories(taxonomy)}
+        onDeselectAllCategories={handleDeselectAllCategories}
+        onToggleCategory={handleToggleCategory} />
+      <main className={classes.mainContent}>
+        <div id="map-container" className={classes.mapContainer} />
+          <LogoOverlay selectedMapId={selectedMapId} />
+        <div className={classes.mapOverlay}>
+          <div className={classes.mapOverlayInner}>
+            <div className={handleShift()}>
+              <div className={classes.titleAndSearch}>
+                <div className={classes.mapTitle}>
+                  <Typography variant="h1">{MAPS[selectedMapId].title}</Typography>
+                </div>
+                <Omnibox
+                  companies={companiesGeojson.features}
+                  onSelectCompany={handleSelectCompany}
+                  onOpenMobileDrawer={() => setMobileDrawerOpen(true)} />
               </div>
-              <LogoOverlay selectedMapId={selectedMapId} />
             </div>
-          </div>
-        </main>
-      </div>
-    </ThemeProvider>
-  );
-} else {
-  return (
-    <ThemeProvider theme={THEME}>
-      <div className={classes.root}>
-        <SettingsPane
-          selectedMapId={selectedMapId}
-          mobileDrawerOpen={mobileDrawerOpen}
-          selectedCategories={selectedCategories}
-          onToggleOpen={setMobileDrawerOpen}
-          onSelectMap={handleSelectMap}
-          taxonomy={taxonomy}
-          onSelectAllCategories={() => handleSelectAllCategories(taxonomy)}
-          onDeselectAllCategories={handleDeselectAllCategories}
-          onToggleCategory={handleToggleCategory} />
-        <main className={classes.mainContent}>
-          <div id="map-container" className={classes.mapContainer} />
             <LogoOverlay selectedMapId={selectedMapId} />
-          <div className={classes.mapOverlay}>
-            <div className={classes.mapOverlayInner}>
-              <div className={classes.mainControlOverlayShifted}>
-                
-                <div className={classes.titleAndSearch}>
-                  <div className={classes.mapTitle}>
-                    <Typography variant="h1">{MAPS[selectedMapId].title}</Typography>
-                  </div>
-                  <Omnibox
-                    companies={companiesGeojson.features}
-                    onSelectCompany={handleSelectCompany}
-                    onOpenMobileDrawer={() => setMobileDrawerOpen(true)} />
-                  </div>
-              </div>
-              <LogoOverlay selectedMapId={selectedMapId} />
-            </div>
           </div>
-        </main>
-      </div>
-    </ThemeProvider>
-  );
-}
-}
+        </div>
+      </main>
+    </div>
+  </ThemeProvider>
+); }
