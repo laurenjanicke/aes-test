@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function LogoOverlay(props) {
+export default function /** creates logo overlay */ LogoOverlay(/** defined earlier */ props) {
   const classes = useStyles();
 
   const map = CONFIG['maps'][props.selectedMapId];

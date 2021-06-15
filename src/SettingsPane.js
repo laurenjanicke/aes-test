@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SettingsPane(props) {
+export default function /** open/close settings pane with sector selector and menu */ SettingsPane(/** defined earlier */ props) {
   const classes = useStyles();
 
   const closeSettingsPane = () => props.onToggleOpen(false);

@@ -32,13 +32,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Omnibox(props) {
+export default function /** seems to generate pop-up boxes */ Omnibox(/** defined earlier */ props) {
   const classes = useStyles();
 
   let companies = (props.companies || []).map(f => f.properties);
   let companyNames = companies.map(c => c.company);
 
-  function handleResultSelection(event, value) {
+  function /** reacts to sector selection */ handleResultSelection( /** mouse event */ event, /** chosen sectors */ value) {
     if (value && companyNames.includes(value.company)) {
       props.onSelectCompany(value);
     }

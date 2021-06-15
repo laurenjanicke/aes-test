@@ -22,8 +22,8 @@ const POINT_LAYER = 'energy-companies-point-layer';
 // mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN;
 mapboxgl.accessToken='pk.eyJ1IjoidG90b3JvLWRha2UiLCJhIjoiY2tiNzJuZmQ3MDFudDJxa2N1ZG91YzBzciJ9.5qJpYzti2W7avnuM9rCiKA'
 
+/** @return {html code for the popup } */
 function getPopupContent(props) {
-  // returns the html code for the popup 
   const categoryInfo = ['tax1', 'tax2', 'tax3']
     .map(k => props[k])
     .filter(s => s).join(", ");
@@ -115,7 +115,6 @@ function populateMapData(map, mapId, mapData) {
 const getUrlFragment = () => window.location.hash.replace('#', '');
 
 function useUrlFragment(fragment, callback) {
-  // not sure what is happening here
   useEffect(() => {
     window.location.hash = '#' + fragment;
     const handleHashChange = () => {
@@ -128,8 +127,8 @@ function useUrlFragment(fragment, callback) {
   });
 }
 
+/** @return {mapId} */
 function getInitialMapId() {
-  // returns the mapId
   let initialMapId = getUrlFragment();
   if (MAPS.hasOwnProperty(initialMapId)) {
     return initialMapId;
@@ -208,8 +207,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/** @return {html code for the app } */
 export default function App() {
-  // returns the html for the app 
   const classes = useStyles();
 
   const [thisMap, setThisMap] = useState(null);
@@ -305,7 +304,6 @@ export default function App() {
   }
 
   useEffect(() => {
-    // not sure what this does
     if (!thisMap) {
       initMap();
     }
@@ -326,7 +324,6 @@ export default function App() {
   });
 
   useUrlFragment(selectedMapId, urlFragment => {
-    // not sure what this does
     if (MAPS.hasOwnProperty(urlFragment)) {
       handleSelectMap(urlFragment);
     }
