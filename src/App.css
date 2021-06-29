@@ -34,7 +34,7 @@ a.popup-link:visited,
 a.popup-link:active { 
   color: #3366FF; text-decoration: none; 
 }
-
+/*change the color to the #79ddf2 when its hovered*/
 a.popup-link:hover { 
   color: #79ddf2; text-decoration: underline; 
 }
