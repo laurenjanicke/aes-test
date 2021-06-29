@@ -59,7 +59,7 @@ function displayPopup(map, feature) {
     .setMaxWidth("600px")
     .addTo(map);
 }
-//79ddf2
+//79ddf2 - color for hover
 
 function populateMapData(map, mapId, mapData) {
   // adds the data to the map
