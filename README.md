@@ -37,3 +37,5 @@ The build is minified and the filenames include the hashes.<br />
 
 
 FMI: https://create-react-app.dev
+
+Collaborators: Axel
