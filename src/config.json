@@ -137,6 +137,19 @@
       ],
       "taxonomy": "default"
     },
+    "philippines": {
+      "title": "Philippines Energy Ecosystem",
+      "shortName": "Philippines",
+      "center": [
+        121,
+        14.58
+      ],
+      "flyTo": [
+        121,
+        14.58
+      ],
+      "taxonomy": "denmark"
+    },
     "denmark": {
       "title": "Denmark Energy Ecosystem",
       "shortName": "Denmark",
