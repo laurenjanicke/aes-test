@@ -4,7 +4,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/Button';
+import { GpsFixed, Replay, SettingsBackupRestore } from '@material-ui/icons';
 import LogoOverlay from './LogoOverlay';
 import Omnibox from './Omnibox';
 import SettingsPane from './SettingsPane';
@@ -205,6 +206,11 @@ const useStyles = makeStyles((theme) => ({
     padding: '4px 0px',
     marginBottom: 4,
   },
+  resetViewButton: {
+    position: 'absolute',
+    bottom: 146,
+    right: 8.5,
+  }
 }));
 
 /** @return {html code for the app } */
@@ -272,6 +278,14 @@ export default function App() {
     } else {
       return classes.mainControlOverlayShifted;
     }
+  }
+
+  function handleReset() {
+    // called when reset button is clicked
+    thisMap.flyTo({
+      center: MAPS[selectedMapId].flyTo,
+      zoom: MAPS[selectedMapId].flyToZoom || 8,
+    });
   }
 
   function setUpMap(data) {
@@ -345,6 +359,11 @@ return (
       <main className={classes.mainContent}>
         <div id="map-container" className={classes.mapContainer} />
           <LogoOverlay selectedMapId={selectedMapId} />
+          <div className={classes.resetViewButton} >
+            <IconButton variant="contained" color="secondary" aria-label="reset view" onClick={() => { handleReset() }} >
+              <GpsFixed />
+            </IconButton>
+          </div>
         <div className={classes.mapOverlay}>
           <div className={classes.mapOverlayInner}>
             <div className={handleShift()}>
@@ -357,6 +376,7 @@ return (
                   onSelectCompany={handleSelectCompany}
                   onOpenMobileDrawer={() => setMobileDrawerOpen(true)} />
               </div>
+              
             </div>
             <LogoOverlay selectedMapId={selectedMapId} />
           </div>
