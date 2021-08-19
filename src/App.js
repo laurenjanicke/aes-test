@@ -5,7 +5,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/Button';
-import { GpsFixed, Replay, SettingsBackupRestore } from '@material-ui/icons';
+import { Home } from '@material-ui/icons';
 import LogoOverlay from './LogoOverlay';
 import Omnibox from './Omnibox';
 import SettingsPane from './SettingsPane';
@@ -364,7 +364,7 @@ return (
           <LogoOverlay selectedMapId={selectedMapId} />
           <div className={classes.resetViewButton} >
             <IconButton variant="contained" color="white" className={classes.resetViewButton} aria-label="reset view" onClick={() => { handleReset() }} >
-              <GpsFixed />
+              <Home />
             </IconButton>
           </div>
         <div className={classes.mapOverlay}>
