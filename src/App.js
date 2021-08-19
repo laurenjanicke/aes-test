@@ -208,8 +208,11 @@ const useStyles = makeStyles((theme) => ({
   },
   resetViewButton: {
     position: 'absolute',
-    bottom: 146,
-    right: 8.5,
+    bottom: 73,
+    right: 4.5,
+    minWidth: 30,
+    maxWidth: 30,
+    height: 31,
   }
 }));
 
@@ -360,7 +363,7 @@ return (
         <div id="map-container" className={classes.mapContainer} />
           <LogoOverlay selectedMapId={selectedMapId} />
           <div className={classes.resetViewButton} >
-            <IconButton variant="contained" color="secondary" aria-label="reset view" onClick={() => { handleReset() }} >
+            <IconButton variant="contained" color="white" className={classes.resetViewButton} aria-label="reset view" onClick={() => { handleReset() }} >
               <GpsFixed />
             </IconButton>
           </div>
