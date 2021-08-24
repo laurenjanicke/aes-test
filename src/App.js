@@ -4,7 +4,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/Button';
+import { Home } from '@material-ui/icons';
 import LogoOverlay from './LogoOverlay';
 import Omnibox from './Omnibox';
 import SettingsPane from './SettingsPane';
@@ -205,6 +206,14 @@ const useStyles = makeStyles((theme) => ({
     padding: '4px 0px',
     marginBottom: 4,
   },
+  resetViewButton: {
+    position: 'absolute',
+    bottom: 73,
+    right: 4.5,
+    minWidth: 30,
+    maxWidth: 30,
+    height: 31,
+  }
 }));
 
 /** @return {html code for the app } */
@@ -272,6 +281,14 @@ export default function App() {
     } else {
       return classes.mainControlOverlayShifted;
     }
+  }
+
+  function handleReset() {
+    // called when reset button is clicked
+    thisMap.flyTo({
+      center: MAPS[selectedMapId].flyTo,
+      zoom: MAPS[selectedMapId].flyToZoom || 8,
+    });
   }
 
   function setUpMap(data) {
@@ -345,6 +362,11 @@ return (
       <main className={classes.mainContent}>
         <div id="map-container" className={classes.mapContainer} />
           <LogoOverlay selectedMapId={selectedMapId} />
+          <div className={classes.resetViewButton} >
+            <IconButton variant="contained" color="white" className={classes.resetViewButton} aria-label="reset view" onClick={() => { handleReset() }} >
+              <Home />
+            </IconButton>
+          </div>
         <div className={classes.mapOverlay}>
           <div className={classes.mapOverlayInner}>
             <div className={handleShift()}>
@@ -357,6 +379,7 @@ return (
                   onSelectCompany={handleSelectCompany}
                   onOpenMobileDrawer={() => setMobileDrawerOpen(true)} />
               </div>
+              
             </div>
             <LogoOverlay selectedMapId={selectedMapId} />
           </div>
