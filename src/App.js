@@ -306,8 +306,8 @@ export default function App() {
       style: 'mapbox://styles/mapbox/dark-v10',
       attributionControl: false,
       center: MAPS[selectedMapId].center,
-      zoom: 6,
-      minZoom: 6,
+      zoom: MAPS[selectedMapId].flyToZoom || 6,
+      minZoom: 5,
     });
     let mapData = fetchMapData(selectedMapId);
     mapData.then(setUpMap);
