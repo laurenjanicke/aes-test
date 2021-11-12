@@ -152,6 +152,19 @@
       "taxonomy": "denmark",
       "displayPhilippinesLogo": true
     },
+    "rwanda": {
+      "title": "Rwanda Energy Ecosystem",
+      "shortName": "Rwanda",
+      "center": [
+        30.06,
+        -1.94995
+      ],
+      "flyTo": [
+        30,
+        -2
+      ],
+      "taxonomy": "denmark"
+    },
     "denmark": {
       "title": "Denmark Energy Ecosystem",
       "shortName": "Denmark",
