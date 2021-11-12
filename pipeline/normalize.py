@@ -23,7 +23,7 @@ def normalize_category_names(df, mapping):
 
 
 def replace_www_to_http(df, col):
-'''
+    '''
 Modify website links that start with www
 
 Arguments: df - dataframe
