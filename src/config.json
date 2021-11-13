@@ -165,6 +165,19 @@
       ],
       "taxonomy": "denmark"
     },
+    "netherlands": {
+      "title": "Netherlands Energy Ecosystem",
+      "shortName": "Netherlands",
+      "center": [
+        4.89,
+        52.374217
+      ],
+      "flyTo": [
+        4.89,
+        52.374217
+      ],
+      "taxonomy": "denmark"
+    },
     "denmark": {
       "title": "Denmark Energy Ecosystem",
       "shortName": "Denmark",
