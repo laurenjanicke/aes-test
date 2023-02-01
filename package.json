@@ -2,7 +2,7 @@
   "name": "aes-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://makhsuda.github.io/aes-test/",
+  "homepage": "https://laurenjanicke.github.io/aes-test/",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",

@@ -149,33 +149,6 @@
         14.58
       ],
       "flyToZoom": 5,
-      "taxonomy": "denmark",
-      "displayPhilippinesLogo": true
-    },
-    "rwanda": {
-      "title": "Rwanda Energy Ecosystem",
-      "shortName": "Rwanda",
-      "center": [
-        30.06,
-        -1.94995
-      ],
-      "flyTo": [
-        30,
-        -2
-      ],
-      "taxonomy": "denmark"
-    },
-    "netherlands": {
-      "title": "Netherlands Energy Ecosystem",
-      "shortName": "Netherlands",
-      "center": [
-        4.89,
-        52.374217
-      ],
-      "flyTo": [
-        4.89,
-        52.374217
-      ],
       "taxonomy": "denmark"
     },
     "denmark": {
@@ -191,6 +164,20 @@
       ],
       "flyToZoom": 6.5,
       "taxonomy": "denmark"
+    },
+    "kenya": {
+      "title": "Kenya Energy Ecosystem",
+      "shortName": "Kenya",
+      "center": [
+        36,
+        0
+      ],
+      "flyTo": [
+        36,
+        0
+      ],
+      "flyToZoom": 6,
+      "taxonomy": "default"
     }
   }
 }
