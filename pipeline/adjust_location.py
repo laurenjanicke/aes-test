@@ -123,6 +123,7 @@ TETHER_DISTANCE = 0.002
 _MOVE = 0.00015
 
 df = original_df.copy()
+print(df)
 for idx_current in df['idx']:
 	print('working on this idx: ', idx_current)
 	idx_closest = get_closest(df, idx_current)
