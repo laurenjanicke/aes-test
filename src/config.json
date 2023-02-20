@@ -178,6 +178,34 @@
       ],
       "flyToZoom": 6,
       "taxonomy": "default"
+    },
+    "kenya-katy": {
+      "title": "Kenya Energy Ecosystem (katy)",
+      "shortName": "Kenya",
+      "center": [
+        36,
+        0
+      ],
+      "flyTo": [
+        36,
+        0
+      ],
+      "flyToZoom": 6,
+      "taxonomy": "default"
+    },
+    "kenya-katy-adj": {
+      "title": "Kenya Energy Ecosystem",
+      "shortName": "Kenya",
+      "center": [
+        36,
+        0
+      ],
+      "flyTo": [
+        36,
+        0
+      ],
+      "flyToZoom": 6,
+      "taxonomy": "default"
     }
   }
 }
